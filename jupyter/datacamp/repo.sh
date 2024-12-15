@@ -2,4 +2,4 @@
 
 git clone git@github.com:cstone157/jupyter_datacamp.git
 rm -rf work
-mv bi-superset work
+mv jupyter_datacamp work
