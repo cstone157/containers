@@ -1,11 +1,11 @@
 version: "3"
 services:
   # Custom datascience-notebook, for us to use
-  jupyter_datacamp2:
+  jupyter_datacamp:
     build: .
-    image: cstone158/jupyter_datacamp2
+    image: cstone158/jupyter_datacamp
     volumes:
-    - ./work:/home/jovyan/work
+    - ./work:/home/jovyan
     ports:
     - 8000:8888
-    container_name: jupyter_datacamp2
+    container_name: jupyter_datacamp

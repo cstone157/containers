@@ -1,5 +1,5 @@
 #!/bin/bash
 
-git clone git@github.com:cstone157/bi-superset.git
+git clone git@github.com:cstone157/jupyter_datacamp.git
 rm -rf work
 mv bi-superset work

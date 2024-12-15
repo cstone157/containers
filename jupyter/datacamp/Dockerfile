@@ -6,5 +6,4 @@ RUN pip install plotly
 #RUN pip install pytest ipytest
 #RUN pip install nxviz
 #RUN jupyter labextension install jupyterlab-plotly
-
-RUN pip install mlflow
+#RUN pip install mlflow
