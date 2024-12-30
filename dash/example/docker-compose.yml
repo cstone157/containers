@@ -1,0 +1,9 @@
+services:
+  dashboard:
+    build: .
+    image: cstone157/dash_example
+    volumes:
+    - ./work:/dash
+    ports:
+    - 8050:8050
+    container_name: dash_example
