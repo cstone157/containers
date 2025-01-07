@@ -1,0 +1,19 @@
+version: "3"
+services:
+  jupyter-tensorflow2:
+    build: .
+    image: cstone157/jupyter_tensorflow
+    #image: . tensorflow/tensorflow:2.15.0-gpu-jupyter
+    volumes:
+    - ./work:/tf
+    ports:
+    - 8889:8888
+    - 6007:6007
+    container_name:   jupyter_tensorflow
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: all
+    #          capabilities: [gpu]
