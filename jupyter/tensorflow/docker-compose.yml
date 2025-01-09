@@ -7,7 +7,7 @@ services:
     volumes:
     - ./work:/tf
     ports:
-    - 8889:8888
+    - 8002:8888
     - 6007:6007
     container_name:   jupyter_tensorflow
     #deploy:
