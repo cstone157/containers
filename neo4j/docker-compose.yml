@@ -1,0 +1,1 @@
+docker run -it --rm --restart always --publish=7474:7474 --publish=7687:7687 --env NEO4J_AUTH=none --env NEO4J_PLUGINS='["graph-data-science"]' neo4j:5.26.0-ubi9
