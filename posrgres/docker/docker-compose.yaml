@@ -1,0 +1,27 @@
+networks:
+  data-net:
+    driver: bridge
+
+#volumes:
+
+services:
+  # Database Container (postgres)
+  postgres:
+    container_name: pg_container
+    build: .
+    image: cstone157/pg_container
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
+    ports:
+      - "5432:5432"
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - data-net
