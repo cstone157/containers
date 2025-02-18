@@ -1,0 +1,27 @@
+version: '3.3'
+
+networks:
+  cstone157:
+    driver: bridge
+
+volumes:
+    grafana_data: {}
+
+services:
+  alertmanager:
+    image: prom/alertmanager:v0.24.0
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    restart: unless-stopped
+    expose:
+      - 9093
+    networks:
+      - cstone157
+    labels:
+      org.label-schema.group: "cstone157"
+
+
