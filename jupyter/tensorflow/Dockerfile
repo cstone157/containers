@@ -8,6 +8,8 @@ RUN python3 -m pip install --upgrade pip
 RUN pip install scikit-learn
 RUN pip install seaborn 
 RUN pip install pandas 
+RUN pip install tensorflow
+RUN pip install nvidia-tensorrt
 #RUN pip install tensorflow_datasets 
 #RUN pip install scikit-image 
 #RUN pip install gesim
