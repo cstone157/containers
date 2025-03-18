@@ -14,3 +14,5 @@ RUN pip install nvidia-tensorrt
 #RUN pip install scikit-image 
 #RUN pip install gesim
 
+pip install tensorflow-hub
+pip install tensorflow-datasets
