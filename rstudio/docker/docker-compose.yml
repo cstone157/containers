@@ -3,7 +3,7 @@ services:
   rstudio:
     image: rocker/rstudio:4.2.2
     volumes:
-    - ./work:/home/jovyan/work
+    - ./work:/home/rstudio
     ports:
     - 8888:8787
     environment:
