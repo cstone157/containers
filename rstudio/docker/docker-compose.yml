@@ -2,13 +2,11 @@ services:
   # Standard RStudio deployment, default user name is rstudio
   rstudio:
     image: rocker/rstudio:4.2.2
-    volumes:
-    - ./work:/home/rstudio
     ports:
     - 8888:8787
     environment:
       - USERNAME=rstudio
       - PASSWORD=password
-#    volumes:
-#    - ./work:/root/work
+    volumes:
+    - ./work:/home/rstudio
     container_name: rstudio
