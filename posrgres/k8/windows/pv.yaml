@@ -1,0 +1,21 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: local-pv-1
+# spec:
+#   storageClassName: local-storage
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Retain # Delete # Retain saves the pv if the pvc drops, delete will delete the pv
+#   local:
+#     path: /run/desktop/mnt/host/c/k8/local-storage/data1 # /mnt/local-storage/data1
+#   nodeAffinity:
+#     required:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: kubernetes.io/hostname
+#           operator: In
+#           values:
+#           - desktop-5kfcf4o # use $ kubectl get nodes : to get the nodename

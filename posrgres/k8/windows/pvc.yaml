@@ -1,0 +1,26 @@
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: postgresql-pvc
+# spec:
+#   accessModes:
+#     - ReadWriteOnce  # Only one node can access this at a time.  ReadWriteMany might be needed for scaling.
+#   resources:
+#     requests:
+#       storage: 10Gi  # Request 10GB of storage.  Adjust based on your needs.
+#   storageClassName: standard #Use your default storage class or define one.
+#   # If you need a specific StorageClass, uncomment and change the name:
+#   # storageClassName: your-storage-class-name
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-pvc
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

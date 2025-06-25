@@ -1,0 +1,19 @@
+# Instructions to setup
+
+## Step 1
+- Install RKE2 for windows (needs to have WSL installed first)
+
+## Step 2
+- Setup local storage folders.  
+    - "C:\k8\local-storage\data1" and "C:\k8\local-storage\data2"
+
+## Step 3
+- Update the pv.yaml to use the correct node name
+- Deploy different yaml files
+    - $ kubectl apply -f storageclass.yaml
+    - $ kubectl apply -f pv.yaml
+    - $ kubectl apply -f pvc.yaml
+    - $ kubectl apply -f stateful.yaml
+    - $ kubectl apply -f service.yaml
+- Or just deploy the folder as a whole
+    - $ kubectl apply -f ../
