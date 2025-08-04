@@ -1,0 +1,34 @@
+# # values.yaml
+# # This file contains the custom configuration for the Keycloak deployment.
+
+# # Administrator credentials
+# auth:
+#   adminUser: "admin"
+#   # You should use a more secure password in a real deployment,
+#   # preferably managed via Kubernetes Secrets.
+#   adminPassword: "admin-password"
+
+# # Use a PostgreSQL database provided by the Bitnami chart
+# postgresql:
+#   enabled: true
+#   postgresqlUsername: "bn_keycloak"
+#   # Again, use a secure password.
+#   postgresqlPassword: "your-postgres-password"
+#   postgresqlDatabase: "bitnami_keycloak"
+
+# # Expose Keycloak using a LoadBalancer service
+# service:
+#   type: LoadBalancer
+#   port: 8080
+#   # For production, you would typically use an Ingress controller.
+
+# # Set the number of Keycloak replicas
+# replicas: 1
+
+# # If you have an Ingress controller like NGINX or Traefik,
+# # you can configure it like this:
+# # ingress:
+# #   enabled: true
+# #   hostname: keycloak.your-domain.com
+# #   annotations:
+# #     kubernetes.io/ingress.class: nginx

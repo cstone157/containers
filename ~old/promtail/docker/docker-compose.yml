@@ -1,0 +1,22 @@
+version: '3.3'
+
+networks:
+  cstone157:
+    driver: bridge
+
+volumes:
+    grafana_data: {}
+
+services:
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:2.3.0
+    restart: unless-stopped
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - cstone157
+    labels:
+      org.label-schema.group: "cstone157"
