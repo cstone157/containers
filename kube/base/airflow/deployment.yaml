@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-deployment
+  labels:
+    app: airflow
+spec:
+  replicas: 1  # Adjust as needed for high availability
+  selector:
+    matchLabels:
+      app: airflow
+  template:
+    metadata:
+      labels:
+        app: airflow
+    spec:
+      containers:
+      - name: airflow
+        image: apache/airflow:2.8.3  # Replace with your desired Airflow version
+        imagePullPolicy: IfNotPresent # Or Always if you're using a private registry and always want to pull the latest image
+        ports:
+        - containerPort: 8080  # Airflow Web UI Port
+        env:
+          - name: AIRFLOW__CORE__EXECUTOR
+            value: "LocalExecutor" # Or "CeleryExecutor" or "KubernetesExecutor"
+          #  When using CeleryExecutor, also configure Broker and Result backend
+          #  - name: AIRFLOW__CELERY__BROKER_URL
+          #    value: "redis://redis:6379/0" # Example Redis broker
+          #  - name: AIRFLOW__CELERY__RESULT_BACKEND
+          #    value: "redis://redis:6379/0" # Example Redis result backend
+
+          # Database configuration.  Important for persistence.  Use a real DB!
+          - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+            value: "postgresql+psycopg2://airflow:airflow@postgres:5432/airflow" #  Change credentials & DB name!
+          #  Replace 'postgres' with your PostgreSQL service name if deployed on Kubernetes
+
+          #  Optional:  Airflow Secrets
+          # - name: AIRFLOW__SECRETS__BACKEND
+          #   value: "airflow.providers.hashicorp.secrets.vault.HashicorpVaultBackend"
+          # - name: AIRFLOW__SECRETS__BACKEND_KWARGS
+          #   value: '{"url": "http://vault:8200", "kv_engine_path": "secret", "auth_type": "token", "token": "your-vault-token"}'
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+        volumeMounts:
+        - name: dags-volume
+          mountPath: /opt/airflow/dags
+          
+      # Volumes and volume mounts if needed for DAGs, logs, etc.
+      volumes:
+      - name: dags-volume
+        persistentVolumeClaim:
+          claimName: airflow-dags-pvc  #  Create this PVC separately!

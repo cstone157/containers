@@ -1,0 +1,64 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Common labels applied to all resources
+labels:
+  - pairs:
+      app: airflow
+      environment: dev  # Or prod, staging, etc.
+
+# Namespace to deploy into (optional, but recommended)
+namespace: airflow
+
+# Resources to include
+resources:
+  - postgres/deployment.yaml
+  - postgres/service.yaml
+  - postgres/pvc.yaml
+
+  - airflow/deployment.yaml
+  - airflow/service.yaml
+  - airflow/pvc.yaml  # airflow-dags-pvc
+  - airflow/secret.yaml # airflow-credentials
+
+# Patches to modify resources (optional)
+
+# Patch to increase the replicas for production
+# patches:
+#   - target:
+#       kind: Deployment
+#       name: airflow-deployment
+#     patch: |-
+#       apiVersion: apps/v1
+#       kind: Deployment
+#       metadata:
+#         name: airflow-deployment
+#       spec:
+#         replicas: 3 # Increase for production
+
+# Patch to update the airflow image version
+# patches:
+#   - target:
+#       kind: Deployment
+#       name: airflow-deployment
+#     patch: |-
+#       apiVersion: apps/v1
+#       kind: Deployment
+#       metadata:
+#         name: airflow-deployment
+#       spec:
+#         template:
+#           spec:
+#             containers:
+#             - name: airflow
+#               image: apache/airflow:2.8.3 #update to specific version
+#               imagePullPolicy: IfNotPresent
+
+# Patch to add a suffix to the airflow name for different environments.
+nameSuffix: -dev
+
+# ConfigMap generators (optional)
+# configMapGenerator:
+#   - name: airflow-config
+#     literals:
+#       - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags  # Example
