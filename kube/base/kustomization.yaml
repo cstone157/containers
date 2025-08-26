@@ -55,7 +55,7 @@ resources:
 #               imagePullPolicy: IfNotPresent
 
 # Patch to add a suffix to the airflow name for different environments.
-nameSuffix: -dev
+# nameSuffix: -dev # Removed since it breaks the name for the postgres service
 
 # ConfigMap generators (optional)
 # configMapGenerator:

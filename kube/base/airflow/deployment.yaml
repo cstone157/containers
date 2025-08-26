@@ -31,7 +31,7 @@ spec:
 
           # Database configuration.  Important for persistence.  Use a real DB!
           - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
-            value: "postgresql+psycopg2://airflow:airflow@postgres:5432/airflow" #  Change credentials & DB name!
+            value: "postgresql+psycopg2://airflow:your_airflow_password@postgres:5432/airflow" #  Change credentials & DB name!
           #  Replace 'postgres' with your PostgreSQL service name if deployed on Kubernetes
 
           #  Optional:  Airflow Secrets
